@@ -1,0 +1,1 @@
+A weather app that allows users to see the weather of a particular location
