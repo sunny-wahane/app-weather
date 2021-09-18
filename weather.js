@@ -1,15 +1,27 @@
-let key = config.SECRET_API_KEY; 
+var key = config.SECRET_API_KEY; 
 
 
-getWeather(cityName) 
+function sumbitName(ev){
+    ev.preventDefault(); 
+    getWeather()
+}
+
+document.getElementById("search").addEventListener("click", sumbitName) 
+
+async function getWeather(e) 
 {
-    cityName = cityName.toLowerCase();
+    city = document.getElementById("city")
+    cityName = (city.value).toLowerCase()
+
     response = await fetch(
-        "api.openweathermap.org/data/2.5/weather?q=cityName&appid=key",
-        )
+        "https://api.openweathermap.org/data/2.5/weather?q="+cityName+"&appid="+key,
+        {
+            mode: 'cors'
+        }
+        ); 
     let json
     if(response.ok) {
-       json = await response.body();
+       json = await response.json();
     } else {
         alert("HTTP-ERROR: " + response.status)
     } 
