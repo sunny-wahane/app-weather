@@ -1,0 +1,30 @@
+footer {
+    text-align: center;
+    color: white;
+    background-color: #212529;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content{
+    flex: 1; 
+    text-align: center;
+}
+
+table h5 {
+    margin: 0px;
+}
+
+table td {
+    padding: 0px;
+}
+
+.spinner{
+    width: 5rem;
+    height: 5rem;
+    border-width: 0.5rem;
+}
