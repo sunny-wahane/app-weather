@@ -85,7 +85,7 @@ function create_main_info(json, cityName){
     const hourly_info = document.createElement("div"); 
     hourly_info.classList.add("two-four-weather"); 
 
-    for(let i = 0 ;i<24; ++i){
+    for(let i = 2 ;i<=24; ++i){
         hourly_info.appendChild(create_hour_divs(json["hourly"][i])); 
         // console.log(hour_info); 
     }
