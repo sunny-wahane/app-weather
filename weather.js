@@ -56,7 +56,8 @@ async function getWeather()
     content.classList.remove("d-flex", "justify-content-center", "align-items-center")
 
     create_main_info(json, cityName); 
-    create_info(json);    
+    create_info(json); 
+    create_week_data(json);    
 
     content.removeChild(loader)
     
@@ -163,5 +164,61 @@ function create_td(name, value, unit=""){
     return div;  
 }
   
+function create_week_data(json){
+
+    const responsive_div = document.createElement("div"); 
+    responsive_div.classList.add("table-responsive", "seven-day", "m-5", "p-3"); 
+
+    const table = document.createElement("table"); 
+
+    table.classList.add("table", "table-striped", "table-hover"); 
+
+    const thead = document.createElement("thead"); 
+    const thead_tr = document.createElement("tr"); 
+
+    thead_tr.appendChild(create_table_value("Day", "th"))
+    thead_tr.appendChild(create_table_value("", "th"))
+    thead_tr.appendChild(create_table_value("Temperature", "th"))
+    thead_tr.appendChild(create_table_value("Clouds", "th"))
+    thead_tr.appendChild(create_table_value("Humidity", "th"))
+
+    thead.appendChild(thead_tr); 
+    const tbody = document.createElement("tbody");
+
+
+    for(let i=1;i<=7; ++i){
+        tbody.appendChild(create_table_content(json["daily"][i])); 
+    }
+
+    table.appendChild(thead); 
+    table.appendChild(tbody); 
+
+    responsive_div.appendChild(table); 
+
+    content.appendChild(responsive_div); 
+
+}
+
+function create_table_value(heading, type){
+    let th1 = document.createElement(type);
+    th1.innerText = heading; 
+    return th1; 
+}
+
+function create_table_content(daily_data){
+    let tbody_tr = document.createElement("tr");    
+    tbody_tr.appendChild(create_table_value(new Date(daily_data["dt"]*1000).toLocaleDateString('en-US', {weekday:'short'}), "th")); 
+    let img = document.createElement("img"); 
+    img.setAttribute("src", "http://openweathermap.org/img/wn/" + daily_data["weather"][0]["icon"] +"@2x.png");
+    let td_img = create_table_value("", "td");
+    td_img.appendChild(img); 
+    tbody_tr.appendChild(td_img);  
+    tbody_tr.appendChild(create_table_value(daily_data["temp"]["day"] + "°C", "td")); 
+    tbody_tr.appendChild(create_table_value(daily_data["clouds"] + "%", "td")); 
+    tbody_tr.appendChild(create_table_value(daily_data["humidity"] +"%", "td")); 
+
+    return tbody_tr; 
+
+}
 
 getWeather(); 

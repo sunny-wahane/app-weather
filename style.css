@@ -11,6 +11,10 @@ body{
    justify-content: center;
 }
 
+th, td {
+    vertical-align: middle;
+}
+
 .content{
     flex: 1; 
     text-align: center;
