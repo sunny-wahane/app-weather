@@ -30,11 +30,17 @@ async function getWeather()
         }
         ); 
     let location_data; 
+
     if(response.ok) {
        location_data = await response.json();
     } else {
-        alert("HTTP-ERROR: " + response.status)
+        alert("Not able to find the weather data for the city"); 
+        city.value = 'bhopal'
+        getWeather(); 
+        return; 
     } 
+
+
 
     let lat = location_data["coord"]["lat"]; 
     let lon = location_data["coord"]["lon"]; 
@@ -157,4 +163,5 @@ function create_td(name, value, unit=""){
     return div;  
 }
   
+
 getWeather(); 
