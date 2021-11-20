@@ -50,8 +50,6 @@ async function getWeather()
     );
 
     let json = await detailed_response.json(); 
-    console.log(json); 
-
 
     content.classList.remove("d-flex", "justify-content-center", "align-items-center")
 
@@ -94,7 +92,6 @@ function create_main_info(json, cityName){
 
     for(let i = 2 ;i<=24; ++i){
         hourly_info.appendChild(create_hour_divs(json["hourly"][i])); 
-        // console.log(hour_info); 
     }
 
 
