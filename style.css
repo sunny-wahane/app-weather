@@ -13,6 +13,7 @@ body{
 
 th, td {
     vertical-align: middle;
+    font-size: 1.25rem;
 }
 
 .content{
@@ -42,11 +43,6 @@ th, td {
     padding: 40px;
 }
 
-/* .weather-overview{
-    padding: 20px;
-} */
-
-
 .hour-info {
     padding: 20px;
     display: flex;
@@ -58,7 +54,6 @@ th, td {
     border-bottom: 0.5px solid grey;
     border-top:0.5px solid grey;;
     padding: 10px;
-    /* margin-left: 40px; */
 }
 
 .two-four-weather{

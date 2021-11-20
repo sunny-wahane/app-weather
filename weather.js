@@ -78,9 +78,15 @@ function create_main_info(json, cityName){
     const p = document.createElement("p"); 
     p.classList.add("main-temp");
     p.innerText = json["current"]["temp"] + "°C"; 
+
+    const p2 = document.createElement("p"); 
+    p2.innerText = "H: " + json["daily"][0]["temp"]["max"]+"°" + " L: " + json["daily"][0]["temp"]["min"]+"°"; 
+    p2.classList.add("fs-5");
+
     weather_overview.appendChild(h1); 
     weather_overview.appendChild(h3); 
     weather_overview.appendChild(p); 
+    weather_overview.appendChild(p2); 
 
 
     const hourly_info = document.createElement("div"); 
@@ -131,10 +137,10 @@ function create_info(json){
     weather_table.classList.add("middle-info", "p-5")
 
     let sunrise_time = new Date(json["current"]["sunrise"]*1000)
-    sunrise_time = sunrise_time.toLocaleTimeString()
+    sunrise_time = sunrise_time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
 
     let sunset_time = new Date(json["current"]["sunset"]*1000)
-    sunset_time = sunset_time.toLocaleTimeString();  
+    sunset_time = sunset_time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });  
 
     weather_table.appendChild(create_td("Sunrise",sunrise_time ))
     weather_table.appendChild(create_td("Sunset", sunset_time))
