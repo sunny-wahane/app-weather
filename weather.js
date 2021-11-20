@@ -57,11 +57,8 @@ async function getWeather()
 
 function create_info(json){
 
-    const weather_table = document.createElement("table"); 
-    weather_table.classList.add("table", "table-dark")
-    const row1 = document.createElement("tr")
-    const row2 = document.createElement("tr")
-
+    const weather_table = document.createElement("div"); 
+    weather_table.classList.add("middle-info")
 
     //To do : Look into the sunset and sunrise time and veryify whether they are correct
     let sunrise_time = new Date(json["current"]["sunrise"])
@@ -70,35 +67,31 @@ function create_info(json){
     let sunset_time = new Date(json["current"]["sunset"])
     sunset_time = sunset_time.toLocaleTimeString();  
 
-    row1.appendChild(create_td("Sunrise",sunrise_time ))
-    row1.appendChild(create_td("Sunset", sunset_time))
-    row1.appendChild(create_td("Wind Speed", json["current"]["wind_speed"], "m/s"))
-    row1.appendChild(create_td("Precipitation", json["hourly"][0]["pop"]*100, "%"))
-    row1.appendChild(create_td("Atmospheric Temperature", json["current"]["dew_point"],"°C"))
+    weather_table.appendChild(create_td("Sunrise",sunrise_time ))
+    weather_table.appendChild(create_td("Sunset", sunset_time))
+    weather_table.appendChild(create_td("Wind Speed", json["current"]["wind_speed"], "m/s"))
+    weather_table.appendChild(create_td("Precipitation", json["hourly"][0]["pop"]*100, "%"))
+    weather_table.appendChild(create_td("Atmospheric Temperature", json["current"]["dew_point"],"°C"))
+    weather_table.appendChild(create_td("Pressure", json["current"]["pressure"], "hPa"))
+    weather_table.appendChild(create_td("Humidity", json["current"]["humidity"], "%"))
+    weather_table.appendChild(create_td("Visibility", json["current"]["visibility"]/1000, "KM"))
+    weather_table.appendChild(create_td("Feels Like", json["current"]["feels_like"], "°C"))
+    weather_table.appendChild(create_td("Uvi Index", json["current"]["uvi"]))
 
-
-    row2.appendChild(create_td("Pressure", json["current"]["pressure"], "hPa"))
-    row2.appendChild(create_td("Humidity", json["current"]["humidity"], "%"))
-    row2.appendChild(create_td("Visibility", json["current"]["visibility"]/1000, "KM"))
-    row2.appendChild(create_td("Feels Like", json["current"]["feels_like"], "°C"))
-    row2.appendChild(create_td("Uvi Index", json["current"]["uvi"]))
-
-
-    weather_table.appendChild(row1);
-    weather_table.appendChild(row2); 
     content.appendChild(weather_table); 
 }
 
 
 function create_td(name, value, unit=""){
-    let td = document.createElement("td");
+    let div = document.createElement("td");
+    div.style.width = "350px"
     let h5 = document.createElement("h5"); 
     h5.innerText = name; 
     let p = document.createElement("p"); 
     p.innerText= (value+" " + unit); 
-    td.appendChild(h5); 
-    td.appendChild(p); 
-    return td;  
+    div.appendChild(h5); 
+    div.appendChild(p); 
+    return div;  
 }
   
 getWeather(); 
