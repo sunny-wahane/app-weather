@@ -17,10 +17,17 @@ body{
 
 table h5 {
     margin: 0px;
+    padding: 2px;
 }
 
 table td {
-    padding: 0px;
+    background-color:#212529 ;
+    padding: 20px;
+    margin: 0px;
+}
+
+p {
+    margin: 0px;
 }
 
 .spinner{
