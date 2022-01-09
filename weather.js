@@ -1,4 +1,4 @@
-var key = config.SECRET_API_KEY; 
+var key = "87da2f99fd159bc6187377b3152269e5"; 
 
 function sumbitName(ev){
     ev.preventDefault(); 
