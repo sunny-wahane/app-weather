@@ -46,7 +46,7 @@ async function getWeather()
     let lon = location_data["coord"]["lon"]; 
 
     detailed_response = await fetch(
-    "https://api.openweathermap.org/data/2.5/onecall?lat="+lat +"&lon="+lon+"&units=metric" + "&appid=" +key
+    "https://api.openweathermap.org/data/2.5/weather?lat="+lat +"&lon="+lon+"&units=metric" + "&appid=" +key
     );
 
     let json = await detailed_response.json(); 
